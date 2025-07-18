@@ -1,10 +1,25 @@
 import mongoose from "mongoose";
 import Order from "../models/order.model.js";
+import { OrderValidation } from "../validations/order/order.validation.js";
+
+const validator = new OrderValidation();
 
 export class OrderController {
   async createOrder(req, res) {
     try {
-      const newOrder = await Order.create(req.body);
+      const body = req.body;
+
+      const { error, value } = validator.createOrderValidation(body);
+
+      if (error) {
+        return res.status(422).json({
+          statusCode: 422,
+          message: "Invalid data",
+          details: error.details,
+        });
+      }
+
+      const newOrder = await Order.create(body);
 
       return res.status(201).json({
         statusCode: 201,
@@ -171,6 +186,18 @@ export class OrderController {
 
   async updateOrder(req, res) {
     try {
+      const body = req.body;
+
+      const { error, value } = validator.updateOrderValidation(body);
+
+      if (error) {
+        return res.status(422).json({
+          statusCode: 422,
+          message: "Invalid data",
+          details: error.details.message,
+        });
+      }
+
       const id = req.params.id;
       if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({
@@ -194,6 +221,7 @@ export class OrderController {
       });
     }
   }
+
   async deleteOrder(req, res) {
     try {
       const id = req.params.id;

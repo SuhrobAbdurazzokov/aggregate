@@ -1,9 +1,20 @@
 import mongoose from "mongoose";
 import Author from "../models/author.model.js";
+import { AuthorValidation } from "../validations/author/author.validation.js";
 
+const validator = new AuthorValidation();
 export class AuthorController {
   async createAuthor(req, res) {
-    try {
+    try { 
+      const { error, value } = validator.createAuthorValidation(req.body);
+      if (error) {
+        return res.status(422).json({
+          statusCode: 422,
+          message: "Invalid data",
+          details: error.details,
+        });
+      }
+
       const newAuthor = await Author.create(req.body);
 
       return res.status(201).json({
@@ -67,8 +78,10 @@ export class AuthorController {
           message: "invalid object id",
         });
       }
+
       const id = new mongoose.Types.ObjectId(req.params.id);
       const authors = await Author.aggregate([
+        { $match: { _id: id } },
         {
           $lookup: {
             from: "books",
@@ -78,16 +91,17 @@ export class AuthorController {
           },
         },
         {
-          $unwind: { path: "$bookInfo", preserveNullAndEmptyArrays: true },
+          $addFields: {
+            books: "$bookInfo",
+          },
         },
-        { $match: { _id: id } },
         {
           $project: {
             _id: 1,
             name: 1,
             country: 1,
             age: 1,
-            books: "$bookInfo",
+            books: 1,
           },
         },
       ]);
@@ -98,6 +112,7 @@ export class AuthorController {
           message: "author not found",
         });
       }
+
       return res.status(200).json({
         statusCode: 200,
         message: "success",
@@ -120,9 +135,26 @@ export class AuthorController {
           message: "invalid object id",
         });
       }
-      const updatingAuthor = await Author.findByIdAndUpdate(id, req.body, {
+
+      const { error, value } = validator.updateAuthorValidation(req.body);
+      if (error) {
+        return res.status(422).json({
+          statusCode: 422,
+          message: "Invalid data",
+          details: error.details,
+        });
+      }
+
+      const updatingAuthor = await Author.findByIdAndUpdate(id, value, {
         new: true,
       });
+
+      if (!updatingAuthor) {
+        return res.status(404).json({
+          statusCode: 404,
+          message: "author not found",
+        });
+      }
 
       return res.status(200).json({
         statusCode: 200,
@@ -136,6 +168,7 @@ export class AuthorController {
       });
     }
   }
+
   async deleteAuthor(req, res) {
     try {
       const id = req.params.id;
@@ -145,6 +178,7 @@ export class AuthorController {
           message: "invalid object id",
         });
       }
+
       const deletedAuthor = await Author.findByIdAndDelete(id);
 
       if (!deletedAuthor) {

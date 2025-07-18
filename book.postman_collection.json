@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "95cfcf78-9553-483f-853b-76e31231dc97",
+		"name": "book",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40229061"
+	},
+	"item": [
+		{
+			"name": "book",
+			"item": [
+				{
+					"name": "localhost:3000/book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"O'tkan kunlar\",\n    \"author\": \"687a18c0fa937ae0ae424cff\",\n    \"genre\": \"Drama\",\n    \"price\": 64000,\n    \"sold\": 777,\n    \"stock\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/book",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/book",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/book",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/book/687a21c430e45c918a779222",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/book/687a21c430e45c918a779222",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"book",
+								"687a21c430e45c918a779222"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/book/687a21c430e45c918a779222",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/book/687a21c430e45c918a779222",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"book",
+								"687a21c430e45c918a779222"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "author",
+			"item": [
+				{
+					"name": "localhost:3000/author",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Eshmat\",\n    \"country\": \"Uzbek\",\n    \"age\": 20,\n    \"phoneNumber\": \"+998993638028\",\n    \"email\": \"eshmar@gmail.com\",\n    \"password\": \"sgdA123!\",\n    \"gender\": \"male\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/author",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/author/687a18c0fa937ae0ae424cff",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Eshmat\",\n    \"country\": \"Uzbek\",\n    \"age\": 20,\n    \"phoneNumber\": \"+998993638028\",\n    \"email\": \"eshmar@gmail.com\",\n    \"password\": \"sgdA123!\",\n    \"gender\": \"male\"\n}"
+						},
+						"url": {
+							"raw": "localhost:3000/author/687a18c0fa937ae0ae424cff",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"author",
+								"687a18c0fa937ae0ae424cff"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/author",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/author",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/author/687a18c0fa937ae0ae424cff",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Eshmat\",\n    \"country\": \"O'zbel\",\n    \"age\": 20,\n    \"phoneNumber\": \"+999999999999\",\n    \"email\": \"toshmat@gmail.com\",\n    \"password\": \"dksfjskda8!!\",\n    \"gender\": \"male\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/author/687a18c0fa937ae0ae424cff",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"author",
+								"687a18c0fa937ae0ae424cff"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order",
+			"item": [
+				{
+					"name": "localhost:3000/order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bookId\": \"687a21c430e45c918a779222\",\n    \"quantity\": 99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/order",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/order",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/order",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/order/687a27c618d79f7a471cf8e8",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/order/687a27c618d79f7a471cf8e8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"order",
+								"687a27c618d79f7a471cf8e8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:3000/order/687a27c618d79f7a471cf8e8",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/order/687a27c618d79f7a471cf8e8",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"order",
+								"687a27c618d79f7a471cf8e8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

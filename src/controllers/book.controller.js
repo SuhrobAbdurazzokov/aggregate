@@ -1,9 +1,22 @@
 import mongoose from "mongoose";
 import Books from "../models/book.model.js";
+import { BookValidation } from "../validations/book/book.validation.js";
+
+const validator = new BookValidation();
 
 export class BookController {
   async createBook(req, res) {
     try {
+      const { error, value } = validator.createBookValidation(req.body);
+
+      if (error) {
+        return res.status(422).json({
+          statusCode: 422,
+          message: "Invalid data",
+          details: error.details,
+        });
+      }
+
       const newBook = await Books.create(req.body);
 
       return res.status(201).json({
@@ -28,10 +41,10 @@ export class BookController {
             avgPrice: { $avg: "$price" },
           },
         },
+
         {
           $project: {
             _id: 0,
-            genre: "$_id",
             avgPrice: { $round: ["$avgPrice", 2] },
           },
         },
@@ -243,6 +256,7 @@ export class BookController {
       });
     }
   }
+
   async deleteBook(req, res) {
     try {
       const id = req.params.id;
