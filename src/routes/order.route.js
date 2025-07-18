@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { OrderController } from "../controllers/order.controller.js";
+import { OrderController } from "../controllers/index.js";
 
-const router = Router();
+const orderRouter = Router();
 
 const orderController = new OrderController();
 
-router
+orderRouter
   .post("/", orderController.createOrder)
   .get("/author", orderController.bestAuthors)
   .get("/", orderController.getAllOrder)
@@ -13,4 +13,4 @@ router
   .patch("/:id", orderController.updateOrder)
   .delete("/:id", orderController.deleteOrder);
 
-export default router;
+export default orderRouter;

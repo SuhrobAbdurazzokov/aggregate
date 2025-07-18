@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { BookController } from "../controllers/book.controller.js";
+import { BookController } from "../controllers/index.js";
 
-const router = Router();
+const bookRouter = Router();
 
 const bookController = new BookController();
 
-router
+bookRouter
   .post("/", bookController.createBook)
   .get("/", bookController.getAllBooks)
   .get("/genre", bookController.bestGenre)
@@ -14,4 +14,4 @@ router
   .patch("/:id", bookController.updateBook)
   .delete("/:id", bookController.deleteBook);
 
-export default router;
+export default bookRouter;

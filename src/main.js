@@ -1,21 +1,14 @@
-import express from "express";
 import { config } from "dotenv";
 import consola from "consola";
 import { connectdb } from "./db/index.js";
-import AuthorRouter from "./routes/author.route.js";
-import BookRouter from "./routes/book.route.js";
-import OrederRouter from "./routes/order.route.js";
+import app from "./app.js";
 
 config();
 
 await connectdb();
 
-const PORT = Number(process.env.PORT);
-const app = express();
-app.use(express.json());
+const PORT = Number(process.env.PORT) || 3000;
 
-app.use("/author", AuthorRouter);
-app.use("/book", BookRouter);
-app.use("/order", OrederRouter);
-
-app.listen(PORT, () => consola.success(`Server running on port: ${PORT}`));
+app.listen(PORT, () => {
+  consola.success(`Server running on port: ${PORT}`);
+});
